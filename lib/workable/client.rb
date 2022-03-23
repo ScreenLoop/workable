@@ -323,6 +323,8 @@ module Workable
         JSON.parse(response.body) if !response.body.to_s.empty?
       when 401
         fail Errors::NotAuthorized, JSON.parse(response.body)['error']
+      when 403
+        fail Errors::Forbidden, JSON.parse(response.body)['error']
       when 404
         fail Errors::NotFound, JSON.parse(response.body)['error']
       when 422
