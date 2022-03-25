@@ -27,6 +27,8 @@ module Workable
     #        candidate: &Hashie::Mash.method(:new)
     #      }
     #    )
+    AUTH_TOKEN_URL = 'https://www.workable.com/oauth/token'
+
     def initialize(options = {})
       @api_key   = options.fetch(:api_key)   { configuration_error 'Missing api_key argument'   }
       @subdomain = options.fetch(:subdomain) { configuration_error 'Missing subdomain argument' }
@@ -258,7 +260,7 @@ module Workable
     end
 
     def refresh_access_token(client_id, client_secret, refresh_token)
-      uri = URI.parse('https://www.workable.com/oauth/token')
+      uri = URI.parse(AUTH_TOKEN_URL)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
