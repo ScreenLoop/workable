@@ -235,7 +235,7 @@ describe Workable::Client do
       stub_request(:get, 'https://www.workable.com/spi/v3/accounts/subdomain/candidates/12345/offer')
         .to_return(status: 200, body: offer_json_fixture)
 
-      expect(client.offer('12345')).to contain_exactly('document_variables')
+      expect(client.offer('12345')['document_variables']).to be_kind_of(Array)
     end
   end
 
