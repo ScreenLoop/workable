@@ -97,6 +97,12 @@ module Workable
       @transform_to.apply(:question, get_request("jobs/#{shortcode}/questions")['questions'])
     end
 
+    # list of stage for job
+    # @param shortcode [String] job short code
+    def job_stages(shortcode)
+      @transform_to.apply(:stages, get_request("jobs/#{shortcode}/stages")['stages'])
+    end
+
     # application form questions for job
     # @param shortcode [String] job short code
     def job_application_form(shortcode)
