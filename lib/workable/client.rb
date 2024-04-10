@@ -277,6 +277,7 @@ module Workable
       uri = URI.parse(AUTH_TOKEN_URL)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      http.read_timeout = 10 * 60
 
       request = Net::HTTP::Post.new(uri.request_uri, auth_headers)
       request.body = refresh_token_form(client_id, client_secret, refresh_token).to_json
